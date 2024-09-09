@@ -40,6 +40,20 @@ h1 {
   margin-left: 15px;
 }
 
+.sidebar div div button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar div div button span {
+  display: flex;
+  align-items: center;
+}
+
 .sidebar-top-item img,
 .sidebar-project-title img {
   height: 25px;
@@ -47,7 +61,6 @@ h1 {
 
 .sidebar-top-item p,
 .sidebar-project-title p {
-  font-size: 1.1em;
   margin-left: 10px;
 }
 
@@ -60,7 +73,6 @@ h1 {
 }
 
 .sidebar-project-task p {
-  font-size: 1em;
   margin-left: 10px;
 }
 
@@ -71,12 +83,35 @@ h1 {
 .sidebar-bottom {
   padding: 10px 25px;
   border-top: 1px solid #9ca3af;
+}
+
+.sidebar-bottom button {
+  background: none;
+  cursor: pointer;
+  border: none;
   color: #4b5563;
+  font-size: 1.1rem;
 }
 
 /*CONTENT*/
 .content {
   padding: 50px;
+}
+
+.content-title {
+  display: flex;
+  align-items: center;
+}
+
+.content-title button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.content-title img {
+  height: 15px;
 }
 
 .list-container {
