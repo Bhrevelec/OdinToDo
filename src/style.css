@@ -157,7 +157,7 @@ h1 {
   font-size: 1.2em;
 }
 
-.list-item-bottom-left {
+.list-item-middle-left {
   color: #374151;
   font-style: italic;
 }
@@ -198,7 +198,7 @@ h1 {
   background-color: #dcfce7;
 }
 
-.list-item-bottom-bottom-left {
+.list-item-bottom-left {
   display: flex;
   gap: 10px;
   align-items: center;

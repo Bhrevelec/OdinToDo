@@ -4,6 +4,7 @@ import {
   createTaskUI,
   updateTaskUI,
   deleteTaskUI,
+  visualiseContentUI,
 } from "./UI.js";
 
 //array that contains all projects
@@ -71,8 +72,13 @@ const init = () => {
 
 init();
 
-createTask("General", "title1", "description1", "deadline1", "urgency1");
+createTask("General", "title1", "description1", "deadline1", "high");
+createTask("General", "title2", "description1", "deadline1", "low");
+createTask("General", "title3", "description1", "deadline1", "medium");
+createTask("General", "title4", "description1", "deadline1", "high");
+
 //deleteTask("General", "title1");
 //modifyProject("General", "NotSoGeneral");
 //deleteProject("General");
+visualiseContentUI(projects[0]);
 console.log(projects);
