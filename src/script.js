@@ -5,6 +5,7 @@ import {
   updateTaskUI,
   deleteTaskUI,
   visualiseContentUI,
+  visualiseSidebarUI,
 } from "./UI.js";
 
 //array that contains all projects
@@ -46,7 +47,7 @@ const modifyTask = (
   //get targeted project, get targeted task, update task data
   const targetedTask = projects
     .filter((project) => project.name === projectID)[0]
-    .tasks.filter((task) => task.name === taskID);
+    .tasks.filter((task) => task.title === taskID);
   targetedTask = { title, description, deadline, urgency };
 };
 
@@ -56,7 +57,7 @@ const deleteTask = (projectID, taskID) => {
     (project) => project.name === projectID
   );
   const targetedTask = targetedProject[0].tasks.filter(
-    (task) => task.name === taskID
+    (task) => task.title === taskID
   );
   const targetedTaskIndex = targetedProject[0].tasks.indexOf(targetedTask);
   targetedProject[0].tasks.splice(targetedTaskIndex, 1);
@@ -81,4 +82,4 @@ createTask("General", "title4", "description1", "deadline1", "high");
 //modifyProject("General", "NotSoGeneral");
 //deleteProject("General");
 visualiseContentUI(projects[0]);
-console.log(projects);
+visualiseSidebarUI(projects);

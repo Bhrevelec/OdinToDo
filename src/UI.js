@@ -3,6 +3,8 @@ import modifyIcon from "./assets/pencil.svg";
 import checkIcon from "./assets/check-circle-outline.svg";
 import deleteIcon from "./assets/delete.svg";
 import calendarIcon from "./assets/calendar-month.svg";
+import projectIcon from "./assets/list-box-outline.svg";
+import taskIcon from "./assets/pound.svg";
 
 const visualiseContentUI = (project) => {
   //add project title
@@ -93,6 +95,48 @@ const visualiseContentUI = (project) => {
   }
 };
 
+const visualiseSidebarUI = (projects) => {
+  //loop through the projects array, for every project, create a project node
+  //loop through the tasks array within the project, for every task create a task node
+  const sidebarTop = document.querySelector(".sidebar-top");
+  for (let i = 0; i < projects.length; i++) {
+    const sidebarProject = document.createElement("div");
+    sidebarProject.classList.add("sidebar-project");
+    sidebarTop.appendChild(sidebarProject);
+    const sidebarProjectFlex = document.createElement("div");
+    sidebarProjectFlex.classList.add("sidebar-project-flex-vertical");
+    sidebarProject.appendChild(sidebarProjectFlex);
+    const sidebarProjectTitle = document.createElement("div");
+    sidebarProjectTitle.classList.add("sidebar-project-title");
+    sidebarProjectFlex.appendChild(sidebarProjectTitle);
+    const titleButton = document.createElement("button");
+    sidebarProjectTitle.appendChild(titleButton);
+    const titleSpan = document.createElement("span");
+    titleButton.appendChild(titleSpan);
+    const titleImg = document.createElement("img");
+    titleImg.src = projectIcon;
+    titleSpan.appendChild(titleImg);
+    const titleText = document.createElement("p");
+    titleText.textContent = projects[i].name;
+    titleSpan.appendChild(titleText);
+    for (let j = 0; j < projects[i].tasks.length; j++) {
+      const projectTask = document.createElement("div");
+      projectTask.classList.add("sidebar-project-task");
+      sidebarProjectFlex.appendChild(projectTask);
+      const taskButton = document.createElement("button");
+      projectTask.appendChild(taskButton);
+      const taskSpan = document.createElement("span");
+      taskButton.appendChild(taskSpan);
+      const taskImg = document.createElement("img");
+      taskImg.src = taskIcon;
+      taskSpan.appendChild(taskImg);
+      const taskText = document.createElement("p");
+      taskText.textContent = projects[i].tasks[j].title;
+      taskSpan.appendChild(taskText);
+    }
+  }
+};
+
 const createProjectUI = (name) => {
   //create new project node
 };
@@ -124,6 +168,7 @@ const deleteTaskUI = (taskIdentifier) => {
 
 export {
   visualiseContentUI,
+  visualiseSidebarUI,
   createProjectUI,
   createTaskUI,
   updateTaskUI,
