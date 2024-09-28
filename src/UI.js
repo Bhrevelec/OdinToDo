@@ -20,6 +20,11 @@ const visualiseContentUI = (project) => {
   const imgModify = document.createElement("img");
   imgModify.src = modifyIcon;
   buttonModify.appendChild(imgModify);
+  const buttonDelete = document.createElement("button");
+  divTitle.appendChild(buttonDelete);
+  const imgDelete = document.createElement("img");
+  imgDelete.src = deleteIcon;
+  buttonDelete.appendChild(imgDelete);
   //add project tasks
   const listContainer = document.createElement("div");
   listContainer.classList.add("list-container");

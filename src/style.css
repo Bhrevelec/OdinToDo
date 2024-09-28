@@ -107,6 +107,9 @@ h1 {
   background: none;
   border: none;
   cursor: pointer;
+}
+
+.content-title button:first-of-type {
   margin-left: 15px;
 }
 
