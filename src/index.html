@@ -52,5 +52,90 @@
       </div>
       <div class="list-container"></div>
     </div>
+    <dialog>
+      <form id="createProjectForm">
+        <p class="dialogTitle">Create new project</p>
+        <label for="nameInput">Name: </label>
+        <input type="text" id="nameInput" />
+        <button>Create</button>
+      </form>
+    </dialog>
+    <dialog>
+      <form id="createTaskForm">
+        <p class="dialogTitle">Create new task</p>
+        <label for="projectSelection2"> Project: </label>
+        <select name="projectSelection2" id="projectSelection2">
+          <option value="Project1">Project1</option>
+          <option value="Project2">Project2</option>
+          <!--load options dynamically-->
+        </select>
+        <label for="taskTitle2"> Title: </label>
+        <input type="text" id="taskTitle2" />
+        <label for="taskDescription2"> Description: </label>
+        <input type="text" id="taskDescription2" />
+        <label for="taskDeadline2"> Deadline: </label>
+        <input type="date" id="taskDeadline2" />
+        <label for="taskUrgency2"> Urgency: </label>
+        <select name="taskUrgency" id="taskUrgency2">
+          <option value="highUrgency">high</option>
+          <option value="mediumUrgency">medium</option>
+          <option value="lowUrgency">low</option>
+        </select>
+        <button>Create</button>
+      </form>
+    </dialog>
+    <dialog>
+      <form id="modifyTaskForm">
+        <p class="dialogTitle">Modify task</p>
+        <p class="dialogFixedInfo">Project:</p>
+        <p class="dialogFixedInfo">To be filled in dynamically</p>
+        <!--dynamically set textcontent of inputs to current values-->
+        <label for="taskTitle3"> Task title: </label>
+        <input type="text" id="taskTitle3" />
+        <label for="taskDescription3"> Description: </label>
+        <input type="text" id="taskDescription3" />
+        <label for="taskDeadline3"> Deadline: </label>
+        <input type="date" id="taskDeadline3" />
+        <label for="taskUrgency3"> Urgency: </label>
+        <select name="taskUrgency" id="taskUrgency3">
+          <option value="highUrgency">high</option>
+          <option value="mediumUrgency">medium</option>
+          <option value="lowUrgency">low</option>
+        </select>
+        <button>Modify</button>
+      </form>
+    </dialog>
+    <dialog>
+      <form id="deleteTaskForm">
+        <p class="dialogTitle">Delete task</p>
+        <p class="dialogFixedInfo">Project:</p>
+        <p class="dialogFixedInfo">To be filled in dynamically</p>
+        <p class="dialogFixedInfo">Task title:</p>
+        <p class="dialogFixedInfo">To be filled in dynamically</p>
+        <p class="dialogFixedInfo">Description:</p>
+        <p class="dialogFixedInfo">To be filled in dynamically</p>
+        <p class="dialogFixedInfo">Deadline:</p>
+        <p class="dialogFixedInfo">To be filled in dynamically</p>
+        <p class="dialogFixedInfo">Urgency:</p>
+        <p class="dialogFixedInfo">To be filled in dynamically</p>
+        <button>Delete</button>
+      </form>
+    </dialog>
+    <dialog>
+      <form id="modifyProjectForm">
+        <p class="dialogTitle">Modify project</p>
+        <label for="nameInput4">Name: </label>
+        <input type="text" id="nameInput4" />
+        <button>Modify</button>
+      </form>
+    </dialog>
+    <dialog open>
+      <form id="deleteProjectForm">
+        <p class="dialogTitle">Delete project</p>
+        <p class="dialogFixedInfo">Project:</p>
+        <p class="dialogFixedInfo">To be filled in dynamically</p>
+        <button>Delete</button>
+      </form>
+    </dialog>
   </body>
 </html>
