@@ -13,34 +13,7 @@
   </head>
   <body>
     <div class="sidebar">
-      <div class="sidebar-project-container">
-        <div class="sidebar-top">
-          <div class="sidebar-top-item">
-            <button>
-              <span>
-                <img src="assets/calendar-today.svg" alt="" />
-                <p>Today</p>
-              </span>
-            </button>
-          </div>
-          <div class="sidebar-top-item">
-            <button>
-              <span>
-                <img src="assets/calendar-month.svg" alt="" />
-                <p>Upcoming</p>
-              </span>
-            </button>
-          </div>
-          <div class="sidebar-top-item">
-            <button>
-              <span>
-                <img src="assets/plus-circle.svg" alt="" />
-                <p>Add task</p>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
+      <div class="sidebar-project-container"></div>
       <div class="sidebar-bottom">
         <button>+ add project</button>
       </div>
@@ -55,9 +28,12 @@
     <dialog>
       <form id="createProjectForm">
         <p class="dialogTitle">Create new project</p>
-        <label for="nameInput">Name: </label>
-        <input type="text" id="nameInput" />
-        <button>Create</button>
+        <label for="nameInput1">Name: </label>
+        <input type="text" id="nameInput1" />
+        <div class="buttonContainer">
+          <button id="confirmDialog1">Create</button>
+          <button id="cancelDialog1">Cancel</button>
+        </div>
       </form>
     </dialog>
     <dialog>
@@ -81,7 +57,10 @@
           <option value="mediumUrgency">medium</option>
           <option value="lowUrgency">low</option>
         </select>
-        <button>Create</button>
+        <div class="buttonContainer">
+          <button id="confirmDialog2">Create</button>
+          <button id="cancelDialog2">Cancel</button>
+        </div>
       </form>
     </dialog>
     <dialog>
@@ -102,7 +81,10 @@
           <option value="mediumUrgency">medium</option>
           <option value="lowUrgency">low</option>
         </select>
-        <button>Modify</button>
+        <div class="buttonContainer">
+          <button id="confirmDialog3">Modify</button>
+          <button id="cancelDialog3">Cancel</button>
+        </div>
       </form>
     </dialog>
     <dialog>
@@ -118,23 +100,32 @@
         <p class="dialogFixedInfo">To be filled in dynamically</p>
         <p class="dialogFixedInfo">Urgency:</p>
         <p class="dialogFixedInfo">To be filled in dynamically</p>
-        <button>Delete</button>
+        <div class="buttonContainer">
+          <button id="confirmDialog4">Delete</button>
+          <button id="cancelDialog4">Cancel</button>
+        </div>
       </form>
     </dialog>
     <dialog>
       <form id="modifyProjectForm">
         <p class="dialogTitle">Modify project</p>
-        <label for="nameInput4">Name: </label>
-        <input type="text" id="nameInput4" />
-        <button>Modify</button>
+        <label for="nameInput5">Name: </label>
+        <input type="text" id="nameInput5" />
+        <div class="buttonContainer">
+          <button id="confirmDialog5">Modify</button>
+          <button id="cancelDialog5">Cancel</button>
+        </div>
       </form>
     </dialog>
-    <dialog open>
+    <dialog>
       <form id="deleteProjectForm">
         <p class="dialogTitle">Delete project</p>
         <p class="dialogFixedInfo">Project:</p>
         <p class="dialogFixedInfo">To be filled in dynamically</p>
-        <button>Delete</button>
+        <div class="buttonContainer">
+          <button id="confirmDialog6">Delete</button>
+          <button id="cancelDialog6">Cancel</button>
+        </div>
       </form>
     </dialog>
   </body>

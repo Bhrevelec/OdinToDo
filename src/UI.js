@@ -5,6 +5,8 @@ import deleteIcon from "./assets/delete.svg";
 import calendarIcon from "./assets/calendar-month.svg";
 import projectIcon from "./assets/list-box-outline.svg";
 import taskIcon from "./assets/pound.svg";
+import calendarTodayIcon from "./assets/calendar-today.svg";
+import addIcon from "./assets/plus-circle.svg";
 
 const visualiseContentUI = (project) => {
   //add project title
@@ -103,7 +105,55 @@ const visualiseContentUI = (project) => {
 const visualiseSidebarUI = (projects) => {
   //loop through the projects array, for every project, create a project node
   //loop through the tasks array within the project, for every task create a task node
-  const sidebarTop = document.querySelector(".sidebar-top");
+  const sidebarProjectContainer = document.querySelector(
+    ".sidebar-project-container"
+  );
+  sidebarProjectContainer.innerHTML = "";
+  const sidebarTop = document.createElement("div");
+  sidebarTop.classList.add("sidebar-top");
+  sidebarProjectContainer.appendChild(sidebarTop);
+  const sidebarTopItem1 = document.createElement("div");
+  sidebarTopItem1.classList.add("sidebar-top-item");
+  sidebarTop.appendChild(sidebarTopItem1);
+  const button1 = document.createElement("button");
+  sidebarTopItem1.appendChild(button1);
+  const span1 = document.createElement("span");
+  button1.appendChild(span1);
+  const img1 = document.createElement("img");
+  img1.src = calendarTodayIcon;
+  span1.appendChild(img1);
+  const p1 = document.createElement("p");
+  p1.textContent = "Today";
+  span1.appendChild(p1);
+
+  const sidebarTopItem2 = document.createElement("div");
+  sidebarTopItem2.classList.add("sidebar-top-item");
+  sidebarTop.appendChild(sidebarTopItem2);
+  const button2 = document.createElement("button");
+  sidebarTopItem2.appendChild(button2);
+  const span2 = document.createElement("span");
+  button2.appendChild(span2);
+  const img2 = document.createElement("img");
+  img2.src = calendarIcon;
+  span2.appendChild(img2);
+  const p2 = document.createElement("p");
+  p2.textContent = "Upcoming";
+  span2.appendChild(p2);
+
+  const sidebarTopItem3 = document.createElement("div");
+  sidebarTopItem3.classList.add("sidebar-top-item");
+  sidebarTop.appendChild(sidebarTopItem3);
+  const button3 = document.createElement("button");
+  sidebarTopItem3.appendChild(button3);
+  const span3 = document.createElement("span");
+  button3.appendChild(span3);
+  const img3 = document.createElement("img");
+  img3.src = addIcon;
+  span3.appendChild(img3);
+  const p3 = document.createElement("p");
+  p3.textContent = "Add task";
+  span3.appendChild(p3);
+
   for (let i = 0; i < projects.length; i++) {
     const sidebarProject = document.createElement("div");
     sidebarProject.classList.add("sidebar-project");
