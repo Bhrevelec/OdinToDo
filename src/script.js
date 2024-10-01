@@ -63,26 +63,32 @@ const deleteTask = (projectID, taskID) => {
   targetedProject[0].tasks.splice(targetedTaskIndex, 1);
 };
 
-//button event listeners
+//Add project button
 const addProjectButton = document.querySelector(".sidebar-bottom button");
 const addProjectDialog =
   document.querySelector("#createProjectForm").parentElement;
+
 addProjectButton.addEventListener("click", () => {
   addProjectDialog.showModal();
-  const cancelProjectDialog = document.querySelector("#cancelDialog1");
-  cancelProjectDialog.addEventListener("click", (event) => {
-    event.preventDefault();
-    addProjectDialog.close();
-  });
-  const confirmProjectDialog = document.querySelector("#confirmDialog1");
-  confirmProjectDialog.addEventListener("click", (event) => {
-    event.preventDefault();
-    createProject(document.querySelector("#nameInput1").value);
-    visualiseSidebarUI(projects);
-    visualiseContentUI(projects[projects.length - 1]);
-    document.querySelector("#nameInput1").value = "";
-    addProjectDialog.close();
-  });
+});
+
+//Cancel dialog1
+const cancelProjectDialog = document.querySelector("#cancelDialog1");
+cancelProjectDialog.addEventListener("click", (event) => {
+  event.preventDefault();
+  document.querySelector("#nameInput1").value = "";
+  addProjectDialog.close();
+});
+
+//Confirm dialog1
+const confirmProjectDialog = document.querySelector("#confirmDialog1");
+confirmProjectDialog.addEventListener("click", (event) => {
+  event.preventDefault();
+  createProject(document.querySelector("#nameInput1").value);
+  visualiseSidebarUI(projects);
+  visualiseContentUI(projects[projects.length - 1]);
+  document.querySelector("#nameInput1").value = "";
+  addProjectDialog.close();
 });
 
 /////////////////
