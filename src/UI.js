@@ -165,6 +165,9 @@ const visualiseSidebarUI = (projects) => {
     sidebarProjectTitle.classList.add("sidebar-project-title");
     sidebarProjectFlex.appendChild(sidebarProjectTitle);
     const titleButton = document.createElement("button");
+    titleButton.addEventListener("click", () => {
+      visualiseContentUI(projects[i]);
+    });
     sidebarProjectTitle.appendChild(titleButton);
     const titleSpan = document.createElement("span");
     titleButton.appendChild(titleSpan);
