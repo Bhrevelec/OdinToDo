@@ -24,7 +24,7 @@ const modifyProject = (projectID, newName) => {
 const deleteProject = (projectID) => {
   //get targeted project, remove it from the projects list
   projects.splice(
-    projects.indexOf(projects.filter((project) => project.name === projectID)),
+    projects.map((project) => project.name).indexOf(projectID),
     1
   );
 };
@@ -73,22 +73,39 @@ addProjectButton.addEventListener("click", () => {
 });
 
 //Cancel dialog1
-const cancelProjectDialog = document.querySelector("#cancelDialog1");
-cancelProjectDialog.addEventListener("click", (event) => {
+const cancelDialog1 = document.querySelector("#cancelDialog1");
+cancelDialog1.addEventListener("click", (event) => {
   event.preventDefault();
   document.querySelector("#nameInput1").value = "";
   addProjectDialog.close();
 });
 
 //Confirm dialog1
-const confirmProjectDialog = document.querySelector("#confirmDialog1");
-confirmProjectDialog.addEventListener("click", (event) => {
+const confirmDialog1 = document.querySelector("#confirmDialog1");
+confirmDialog1.addEventListener("click", (event) => {
   event.preventDefault();
   createProject(document.querySelector("#nameInput1").value);
   visualiseSidebarUI(projects);
   visualiseContentUI(projects[projects.length - 1]);
   document.querySelector("#nameInput1").value = "";
   addProjectDialog.close();
+});
+
+//Cancel dialog6
+const cancelDialog6 = document.querySelector("#cancelDialog6");
+cancelDialog6.addEventListener("click", (event) => {
+  event.preventDefault();
+  document.querySelector("#deleteProjectForm").parentElement.close();
+});
+
+//Confirm dialog6
+const confirmDialog6 = document.querySelector("#confirmDialog6");
+confirmDialog6.addEventListener("click", (event) => {
+  event.preventDefault();
+  deleteProject(document.querySelector("#deleteProjectInfo").textContent);
+  visualiseContentUI(projects[0]);
+  visualiseSidebarUI(projects);
+  document.querySelector("#deleteProjectForm").parentElement.close();
 });
 
 /////////////////
@@ -103,11 +120,11 @@ init();
 
 createTask("General", "title1", "description1", "deadline1", "high");
 createTask("General", "title2", "description1", "deadline1", "low");
-createTask("General", "title3", "description1", "deadline1", "medium");
-createTask("General", "title4", "description1", "deadline1", "high");
 
 //deleteTask("General", "title1");
 //modifyProject("General", "NotSoGeneral");
 //deleteProject("General");
 visualiseContentUI(projects[0]);
 visualiseSidebarUI(projects);
+
+//PROCEED WITH IMPLEMENTING DELETEPROJECT BUTTON

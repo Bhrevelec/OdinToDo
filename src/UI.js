@@ -23,6 +23,10 @@ const visualiseContentUI = (project) => {
   imgModify.src = modifyIcon;
   buttonModify.appendChild(imgModify);
   const buttonDelete = document.createElement("button");
+  buttonDelete.addEventListener("click", () => {
+    document.querySelector("#deleteProjectForm").parentNode.showModal();
+    document.querySelector("#deleteProjectInfo").textContent = project.name; //dynamisch laden fixen
+  });
   divTitle.appendChild(buttonDelete);
   const imgDelete = document.createElement("img");
   imgDelete.src = deleteIcon;
@@ -80,7 +84,6 @@ const visualiseContentUI = (project) => {
     let textTaskDeadline = document.createElement("p");
     textTaskDeadline.textContent = project.tasks[i].deadline;
     taskDeadlineBottomLeft.appendChild(textTaskDeadline);
-    console.log(textTaskDeadline.textContent);
     let urgencyBottomLeft = document.createElement("div");
     urgencyBottomLeft.classList.add("urgency");
     //ook nog logica toevoegen die kleurtje toevoegt adhv het type urgency
