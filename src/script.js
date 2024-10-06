@@ -1,12 +1,5 @@
 import "./style.css";
-import {
-  createProjectUI,
-  createTaskUI,
-  updateTaskUI,
-  deleteTaskUI,
-  visualiseContentUI,
-  visualiseSidebarUI,
-} from "./UI.js";
+import { visualiseContentUI, visualiseSidebarUI } from "./UI.js";
 
 //array that contains all projects
 const projects = [];
@@ -63,6 +56,7 @@ const deleteTask = (projectID, taskID) => {
   targetedProject[0].tasks.splice(targetedTaskIndex, 1);
 };
 
+//INTERACTIONS
 //Add project button
 const addProjectButton = document.querySelector(".sidebar-bottom button");
 const addProjectDialog =
@@ -145,10 +139,5 @@ init();
 createTask("General", "title1", "description1", "deadline1", "high");
 createTask("General", "title2", "description1", "deadline1", "low");
 
-//deleteTask("General", "title1");
-//modifyProject("General", "NotSoGeneral");
-//deleteProject("General");
 visualiseContentUI(projects[0]);
 visualiseSidebarUI(projects);
-
-//PROCEED WITH IMPLEMENTING DELETEPROJECT BUTTON

@@ -29,7 +29,7 @@ const visualiseContentUI = (project) => {
   const buttonDelete = document.createElement("button");
   buttonDelete.addEventListener("click", () => {
     document.querySelector("#deleteProjectForm").parentNode.showModal();
-    document.querySelector("#deleteProjectInfo").textContent = project.name; //dynamisch laden fixen
+    document.querySelector("#deleteProjectInfo").textContent = project.name;
   });
   divTitle.appendChild(buttonDelete);
   const imgDelete = document.createElement("img");
@@ -90,7 +90,6 @@ const visualiseContentUI = (project) => {
     taskDeadlineBottomLeft.appendChild(textTaskDeadline);
     let urgencyBottomLeft = document.createElement("div");
     urgencyBottomLeft.classList.add("urgency");
-    //ook nog logica toevoegen die kleurtje toevoegt adhv het type urgency
     switch (project.tasks[i].urgency) {
       case "high":
         urgencyBottomLeft.classList.add("high");
@@ -202,40 +201,4 @@ const visualiseSidebarUI = (projects) => {
   }
 };
 
-const createProjectUI = (name) => {
-  //create new project node
-};
-
-const createTaskUI = (title, description, deadline, urgency, project) => {
-  //get project node
-  //create all UI elements of the task
-  //append to the project node
-  //also append it to the sidebar (different function?)
-};
-
-const updateTaskUI = (
-  taskIdentifier,
-  title,
-  description,
-  deadline,
-  urgency
-) => {
-  //get task node
-  //check which input fields contain values
-  //change those fields
-};
-
-const deleteTaskUI = (taskIdentifier) => {
-  //get task node
-  //remove it completely
-  //also remove from the sidebar (different function?)
-};
-
-export {
-  visualiseContentUI,
-  visualiseSidebarUI,
-  createProjectUI,
-  createTaskUI,
-  updateTaskUI,
-  deleteTaskUI,
-};
+export { visualiseContentUI, visualiseSidebarUI };
