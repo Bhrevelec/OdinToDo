@@ -6,20 +6,26 @@ const projects = [];
 
 const createProject = (name) => {
   //add new project object to project array
-  projects.push({ name, tasks: [] });
+  if (checkProjectAvailability(projects, name)) {
+    projects.push({ name, tasks: [] });
+  }
 };
 
 const modifyProject = (projectID, newName) => {
   //get targeted project, modify name
-  projects.filter((project) => project.name === projectID)[0].name = newName;
+  if (checkProjectAvailability(projects, newName)) {
+    projects.filter((project) => project.name === projectID)[0].name = newName;
+  }
 };
 
 const deleteProject = (projectID) => {
   //get targeted project, remove it from the projects list
-  projects.splice(
-    projects.map((project) => project.name).indexOf(projectID),
-    1
-  );
+  if (projects.length > 1) {
+    projects.splice(
+      projects.map((project) => project.name).indexOf(projectID),
+      1
+    );
+  }
 };
 
 const createTask = (projectID, title, description, deadline, urgency) => {
@@ -54,6 +60,18 @@ const deleteTask = (projectID, taskID) => {
   );
   const targetedTaskIndex = targetedProject[0].tasks.indexOf(targetedTask);
   targetedProject[0].tasks.splice(targetedTaskIndex, 1);
+};
+
+const checkProjectAvailability = (array, name) => {
+  return array.map((element) => element.name).indexOf(name) === -1
+    ? true
+    : false;
+};
+
+const checkTaskAvailability = (array, title) => {
+  return array.map((element) => element.title).indexOf(title) === -1
+    ? true
+    : false;
 };
 
 //INTERACTIONS
