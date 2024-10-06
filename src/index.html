@@ -109,7 +109,9 @@
     <dialog>
       <form id="modifyProjectForm">
         <p class="dialogTitle">Modify project</p>
-        <label for="nameInput5">Name: </label>
+        <p class="dialogFixedInfo">Current Name:</p>
+        <p class="dialogFixedInfo" id="modifyProjectInfo"></p>
+        <label for="nameInput5">New name: </label>
         <input type="text" id="nameInput5" />
         <div class="buttonContainer">
           <button id="confirmDialog5">Modify</button>
@@ -121,7 +123,7 @@
       <form id="deleteProjectForm">
         <p class="dialogTitle">Delete project</p>
         <p class="dialogFixedInfo">Project:</p>
-        <p class="dialogFixedInfo" id="deleteProjectInfo">p</p>
+        <p class="dialogFixedInfo" id="deleteProjectInfo"></p>
         <div class="buttonContainer">
           <button id="confirmDialog6">Delete</button>
           <button id="cancelDialog6">Cancel</button>

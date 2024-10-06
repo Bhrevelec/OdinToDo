@@ -16,8 +16,12 @@ const visualiseContentUI = (project) => {
   content.appendChild(divTitle);
   const headerTitle = document.createElement("h1");
   headerTitle.textContent = project.name;
-  const buttonModify = document.createElement("button");
   divTitle.appendChild(headerTitle);
+  const buttonModify = document.createElement("button");
+  buttonModify.addEventListener("click", () => {
+    document.querySelector("#modifyProjectForm").parentNode.showModal();
+    document.querySelector("#modifyProjectInfo").textContent = project.name;
+  });
   divTitle.appendChild(buttonModify);
   const imgModify = document.createElement("img");
   imgModify.src = modifyIcon;

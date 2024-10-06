@@ -91,6 +91,30 @@ confirmDialog1.addEventListener("click", (event) => {
   addProjectDialog.close();
 });
 
+//Cancel dialog5
+const cancelDialog5 = document.querySelector("#cancelDialog5");
+cancelDialog5.addEventListener("click", (event) => {
+  event.preventDefault();
+  document.querySelector("#modifyProjectForm").parentElement.close();
+});
+
+//Confirm dialog5
+const confirmDialog5 = document.querySelector("#confirmDialog5");
+confirmDialog5.addEventListener("click", (event) => {
+  event.preventDefault();
+  const currentProjectIndex = projects
+    .map((project) => project.name)
+    .indexOf(document.querySelector("#modifyProjectInfo").textContent);
+  modifyProject(
+    document.querySelector("#modifyProjectInfo").textContent,
+    document.querySelector("#nameInput5").value
+  );
+  visualiseSidebarUI(projects);
+  visualiseContentUI(projects[currentProjectIndex]);
+  document.querySelector("#nameInput5").value = "";
+  document.querySelector("#modifyProjectForm").parentElement.close();
+});
+
 //Cancel dialog6
 const cancelDialog6 = document.querySelector("#cancelDialog6");
 cancelDialog6.addEventListener("click", (event) => {
