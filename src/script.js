@@ -103,6 +103,52 @@ confirmDialog1.addEventListener("click", (event) => {
   addProjectDialog.close();
 });
 
+//Cancel dialog2
+const cancelDialog2 = document.querySelector("#cancelDialog2");
+cancelDialog2.addEventListener("click", (event) => {
+  event.preventDefault();
+  document.querySelector("#createTaskForm").parentNode.close();
+});
+
+//Confirm dialog2
+//hier klopt niets van
+const confirmDialog2 = document.querySelector("#confirmDialog2");
+confirmDialog2.addEventListener("click", (event) => {
+  event.preventDefault();
+  const selectedProject = document.querySelector("#projectSelection2").value;
+  const taskTitle = document.querySelector("#taskTitle2").value;
+  const taskDescription = document.querySelector("#taskDescription2").value;
+  const taskDeadline = document.querySelector("#taskDeadline2").value;
+  const taskUrgency = document.querySelector("#taskUrgency2").value;
+
+  if (
+    checkTaskAvailability(
+      projects.filter((project) => {
+        return project.name === selectedProject;
+      })[0].tasks,
+      taskTitle
+    )
+  ) {
+    createTask(
+      selectedProject,
+      taskTitle,
+      taskDescription,
+      taskDeadline,
+      taskUrgency
+    );
+    visualiseSidebarUI(projects);
+    visualiseContentUI(
+      projects.filter((project) => {
+        return project.name === selectedProject;
+      })[0]
+    );
+    document.querySelector("#taskTitle2").value = "";
+    document.querySelector("#taskDescription2").value = "";
+    document.querySelector("#taskDeadline2").value = "";
+  }
+  document.querySelector("#createTaskForm").parentNode.close();
+});
+
 //Cancel dialog5
 const cancelDialog5 = document.querySelector("#cancelDialog5");
 cancelDialog5.addEventListener("click", (event) => {

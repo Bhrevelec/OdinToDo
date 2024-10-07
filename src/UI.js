@@ -150,6 +150,17 @@ const visualiseSidebarUI = (projects) => {
   sidebarTopItem3.classList.add("sidebar-top-item");
   sidebarTop.appendChild(sidebarTopItem3);
   const button3 = document.createElement("button");
+  button3.addEventListener("click", () => {
+    document.querySelector("#createTaskForm").parentNode.showModal();
+    const projectSelection2 = document.querySelector("#projectSelection2");
+    projectSelection2.innerHTML = "";
+    for (let i = 0; i < projects.length; i++) {
+      const optionElement = document.createElement("option");
+      optionElement.value = projects[i].name;
+      optionElement.textContent = projects[i].name;
+      projectSelection2.appendChild(optionElement);
+    }
+  });
   sidebarTopItem3.appendChild(button3);
   const span3 = document.createElement("span");
   button3.appendChild(span3);
