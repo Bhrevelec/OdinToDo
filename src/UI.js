@@ -66,6 +66,19 @@ const visualiseContentUI = (project) => {
     listItemButtonModify.appendChild(modifyImgButtonModify);
     let listItemButtonDelete = document.createElement("button");
     listItemButtonDelete.classList.add("list-item-button");
+    listItemButtonDelete.addEventListener("click", () => {
+      document.querySelector("#deleteTaskProjectInfo").textContent =
+        project.name;
+      document.querySelector("#deleteTaskTaskInfo").textContent =
+        project.tasks[i].title;
+      document.querySelector("#deleteTaskDescriptionInfo").textContent =
+        project.tasks[i].description;
+      document.querySelector("#deleteTaskDeadlineInfo").textContent =
+        project.tasks[i].deadline;
+      document.querySelector("#deleteTaskUrgencyInfo").textContent =
+        project.tasks[i].urgency;
+      document.querySelector("#deleteTaskForm").parentElement.showModal();
+    });
     listItemTopRight.appendChild(listItemButtonDelete);
     let deleteImgButtonDelete = document.createElement("img");
     deleteImgButtonDelete.src = deleteIcon;

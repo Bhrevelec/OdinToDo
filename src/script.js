@@ -55,10 +55,9 @@ const deleteTask = (projectID, taskID) => {
   const targetedProject = projects.filter(
     (project) => project.name === projectID
   );
-  const targetedTask = targetedProject[0].tasks.filter(
-    (task) => task.title === taskID
-  );
-  const targetedTaskIndex = targetedProject[0].tasks.indexOf(targetedTask);
+  const targetedTaskIndex = targetedProject[0].tasks
+    .map((task) => task.title)
+    .indexOf(taskID);
   targetedProject[0].tasks.splice(targetedTaskIndex, 1);
 };
 
@@ -147,6 +146,33 @@ confirmDialog2.addEventListener("click", (event) => {
     document.querySelector("#taskDeadline2").value = "";
   }
   document.querySelector("#createTaskForm").parentNode.close();
+});
+
+//Cancel dialog4
+const cancelDialog4 = document.querySelector("#cancelDialog4");
+cancelDialog4.addEventListener("click", (event) => {
+  event.preventDefault();
+  document.querySelector("#deleteTaskForm").parentElement.close();
+});
+
+//Confirm dialog4
+const confirmDialog4 = document.querySelector("#confirmDialog4");
+confirmDialog4.addEventListener("click", (event) => {
+  event.preventDefault();
+  deleteTask(
+    document.querySelector("#deleteTaskProjectInfo").textContent,
+    document.querySelector("#deleteTaskTaskInfo").textContent
+  );
+  visualiseSidebarUI(projects);
+  visualiseContentUI(
+    projects.filter((project) => {
+      return (
+        project.name ===
+        document.querySelector("#deleteTaskProjectInfo").textContent
+      );
+    })[0]
+  );
+  document.querySelector("#deleteTaskForm").parentElement.close();
 });
 
 //Cancel dialog5
