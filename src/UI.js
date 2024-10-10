@@ -52,12 +52,6 @@ const visualiseContentUI = (project) => {
     let listItemTopRight = document.createElement("div");
     listItemTopRight.classList.add("list-item-top-right");
     listItem.appendChild(listItemTopRight);
-    let listItemButtonCheck = document.createElement("button");
-    listItemButtonCheck.classList.add("list-item-button");
-    listItemTopRight.appendChild(listItemButtonCheck);
-    let checkImgButtonCheck = document.createElement("img");
-    checkImgButtonCheck.src = checkIcon;
-    listItemButtonCheck.appendChild(checkImgButtonCheck);
     let listItemButtonModify = document.createElement("button");
     listItemButtonModify.classList.add("list-item-button");
     listItemButtonModify.addEventListener("click", () => {
