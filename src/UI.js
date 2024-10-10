@@ -60,6 +60,29 @@ const visualiseContentUI = (project) => {
     listItemButtonCheck.appendChild(checkImgButtonCheck);
     let listItemButtonModify = document.createElement("button");
     listItemButtonModify.classList.add("list-item-button");
+    listItemButtonModify.addEventListener("click", () => {
+      document.querySelector("#modifyTaskProjectInfo").textContent =
+        project.name;
+      document.querySelector("#taskTitle3").value = project.tasks[i].title;
+      document.querySelector("#taskTitle3").defaultValue =
+        project.tasks[i].title;
+      document.querySelector("#taskDescription3").value =
+        project.tasks[i].description;
+      document.querySelector("#taskDeadline3").value =
+        project.tasks[i].deadline;
+      switch (project.tasks[i].urgency) {
+        case "high":
+          document.querySelector("#taskUrgency3").options[0].selected = true;
+          break;
+        case "medium":
+          document.querySelector("#taskUrgency3").options[1].selected = true;
+          break;
+        case "low":
+          document.querySelector("#taskUrgency3").options[2].selected = true;
+          break;
+      }
+      document.querySelector("#modifyTaskForm").parentElement.showModal();
+    });
     listItemTopRight.appendChild(listItemButtonModify);
     let modifyImgButtonModify = document.createElement("img");
     modifyImgButtonModify.src = modifyIcon;

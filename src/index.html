@@ -67,7 +67,7 @@
       <form id="modifyTaskForm">
         <p class="dialogTitle">Modify task</p>
         <p class="dialogFixedInfo">Project:</p>
-        <p class="dialogFixedInfo">To be filled in dynamically</p>
+        <p class="dialogFixedInfo" id="modifyTaskProjectInfo"></p>
         <!--dynamically set textcontent of inputs to current values-->
         <label for="taskTitle3"> Task title: </label>
         <input type="text" id="taskTitle3" />
@@ -77,9 +77,9 @@
         <input type="date" id="taskDeadline3" />
         <label for="taskUrgency3"> Urgency: </label>
         <select name="taskUrgency" id="taskUrgency3">
-          <option value="highUrgency">high</option>
-          <option value="mediumUrgency">medium</option>
-          <option value="lowUrgency">low</option>
+          <option value="high">high</option>
+          <option value="medium">medium</option>
+          <option value="low">low</option>
         </select>
         <div class="buttonContainer">
           <button id="confirmDialog3">Modify</button>

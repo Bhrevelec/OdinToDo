@@ -43,11 +43,19 @@ const modifyTask = (
   deadline,
   urgency
 ) => {
-  //get targeted project, get targeted task, update task data
-  const targetedTask = projects
-    .filter((project) => project.name === projectID)[0]
-    .tasks.filter((task) => task.title === taskID);
-  targetedTask = { title, description, deadline, urgency };
+  const projectIndex = projects
+    .map((project) => project.name)
+    .indexOf(projectID);
+  const taskIndex = projects[projectIndex].tasks
+    .map((task) => task.title)
+    .indexOf(taskID);
+  console.log(projectIndex + " " + taskIndex);
+  projects[projectIndex].tasks[taskIndex] = {
+    title,
+    description,
+    deadline,
+    urgency,
+  };
 };
 
 const deleteTask = (projectID, taskID) => {
@@ -110,7 +118,6 @@ cancelDialog2.addEventListener("click", (event) => {
 });
 
 //Confirm dialog2
-//hier klopt niets van
 const confirmDialog2 = document.querySelector("#confirmDialog2");
 confirmDialog2.addEventListener("click", (event) => {
   event.preventDefault();
@@ -146,6 +153,49 @@ confirmDialog2.addEventListener("click", (event) => {
     document.querySelector("#taskDeadline2").value = "";
   }
   document.querySelector("#createTaskForm").parentNode.close();
+});
+
+//Cancel dialog3
+const cancelDialog3 = document.querySelector("#cancelDialog3");
+cancelDialog3.addEventListener("click", (event) => {
+  event.preventDefault();
+  document.querySelector("#modifyTaskForm").parentElement.close();
+});
+
+//Confirm dialog3
+const confirmDialog3 = document.querySelector("#confirmDialog3");
+confirmDialog3.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  if (
+    checkTaskAvailability(
+      projects.filter(
+        (project) =>
+          project.name ===
+          document.querySelector("#modifyTaskProjectInfo").textContent
+      )[0].tasks,
+      document.querySelector("#taskTitle3").value
+    )
+  ) {
+    modifyTask(
+      document.querySelector("#modifyTaskProjectInfo").textContent,
+      document.querySelector("#taskTitle3").getAttribute("value"),
+      document.querySelector("#taskTitle3").value,
+      document.querySelector("#taskDescription3").value,
+      document.querySelector("#taskDeadline3").value,
+      document.querySelector("#taskUrgency3").value
+    );
+    visualiseSidebarUI(projects);
+    visualiseContentUI(
+      projects.filter(
+        (project) =>
+          project.name ===
+          document.querySelector("#modifyTaskProjectInfo").textContent
+      )[0]
+    );
+  }
+
+  document.querySelector("#modifyTaskForm").parentElement.close();
 });
 
 //Cancel dialog4
