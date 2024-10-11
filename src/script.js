@@ -175,7 +175,9 @@ confirmDialog3.addEventListener("click", (event) => {
           document.querySelector("#modifyTaskProjectInfo").textContent
       )[0].tasks,
       document.querySelector("#taskTitle3").value
-    )
+    ) ||
+    document.querySelector("#taskTitle3").getAttribute("value") ===
+      document.querySelector("#taskTitle3").value
   ) {
     modifyTask(
       document.querySelector("#modifyTaskProjectInfo").textContent,
@@ -185,6 +187,7 @@ confirmDialog3.addEventListener("click", (event) => {
       document.querySelector("#taskDeadline3").value,
       document.querySelector("#taskUrgency3").value
     );
+    console.log(document.querySelector("#taskDeadline3").value);
     visualiseSidebarUI(projects);
     visualiseContentUI(
       projects.filter(
@@ -281,3 +284,7 @@ createTask("General", "title2", "description1", "deadline1", "low");
 
 visualiseContentUI(projects[0]);
 visualiseSidebarUI(projects);
+/*
+import { format } from "date-fns";
+console.log(format(new Date(), "yyyy-MM-dd"));
+*/
