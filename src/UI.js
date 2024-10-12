@@ -6,7 +6,7 @@ import projectIcon from "./assets/list-box-outline.svg";
 import taskIcon from "./assets/pound.svg";
 import calendarTodayIcon from "./assets/calendar-today.svg";
 import addIcon from "./assets/plus-circle.svg";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 
 const visualiseContentUI = (project) => {
   //add project title
@@ -17,7 +17,7 @@ const visualiseContentUI = (project) => {
   const headerTitle = document.createElement("h1");
   headerTitle.textContent = project.name;
   divTitle.appendChild(headerTitle);
-  if (project.name !== "Today") {
+  if (project.name !== "Today" && project.name !== "Upcoming") {
     const buttonModify = document.createElement("button");
     buttonModify.addEventListener("click", () => {
       document.querySelector("#modifyProjectForm").parentNode.showModal();
@@ -54,7 +54,7 @@ const visualiseContentUI = (project) => {
     let listItemTopRight = document.createElement("div");
     listItemTopRight.classList.add("list-item-top-right");
     listItem.appendChild(listItemTopRight);
-    if (project.name !== "Today") {
+    if (project.name !== "Today" && project.name !== "Upcoming") {
       let listItemButtonModify = document.createElement("button");
       listItemButtonModify.classList.add("list-item-button");
       listItemButtonModify.addEventListener("click", () => {
@@ -174,6 +174,9 @@ const visualiseSidebarUI = (projects) => {
   sidebarTopItem2.classList.add("sidebar-top-item");
   sidebarTop.appendChild(sidebarTopItem2);
   const button2 = document.createElement("button");
+  button2.addEventListener("click", () => {
+    visualiseUpcomingUI(projects);
+  });
   sidebarTopItem2.appendChild(button2);
   const span2 = document.createElement("span");
   button2.appendChild(span2);
@@ -261,6 +264,19 @@ const visualiseTodayUI = (projects) => {
     }
   }
   visualiseContentUI(tasksToday);
+};
+
+const visualiseUpcomingUI = (projects) => {
+  let tasksUpcoming = { name: "Upcoming", tasks: [] };
+  let dateUpcoming = format(addDays(new Date(), 7), "yyyy-MM-dd");
+  for (let i = 0; i < projects.length; i++) {
+    for (let j = 0; j < projects[i].tasks.length; j++) {
+      if (projects[i].tasks[j].deadline <= dateUpcoming) {
+        tasksUpcoming.tasks.push(projects[i].tasks[j]);
+      }
+    }
+  }
+  visualiseContentUI(tasksUpcoming);
 };
 
 export { visualiseContentUI, visualiseSidebarUI };
