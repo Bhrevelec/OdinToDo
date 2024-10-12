@@ -259,7 +259,9 @@ const visualiseTodayUI = (projects) => {
   for (let i = 0; i < projects.length; i++) {
     for (let j = 0; j < projects[i].tasks.length; j++) {
       if (projects[i].tasks[j].deadline === dateToday) {
-        tasksToday.tasks.push(projects[i].tasks[j]);
+        tasksToday.tasks.push({ ...projects[i].tasks[j] });
+        tasksToday.tasks[tasksToday.tasks.length - 1].title =
+          `${projects[i].name}: ` + projects[i].tasks[j].title;
       }
     }
   }
@@ -272,7 +274,9 @@ const visualiseUpcomingUI = (projects) => {
   for (let i = 0; i < projects.length; i++) {
     for (let j = 0; j < projects[i].tasks.length; j++) {
       if (projects[i].tasks[j].deadline <= dateUpcoming) {
-        tasksUpcoming.tasks.push(projects[i].tasks[j]);
+        tasksUpcoming.tasks.push({ ...projects[i].tasks[j] });
+        tasksUpcoming.tasks[tasksUpcoming.tasks.length - 1].title =
+          `${projects[i].name}: ` + projects[i].tasks[j].title;
       }
     }
   }
