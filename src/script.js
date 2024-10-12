@@ -2,12 +2,13 @@ import "./style.css";
 import { visualiseContentUI, visualiseSidebarUI } from "./UI.js";
 
 //array that contains all projects
-const projects = [];
+let projects = [];
 
 const createProject = (name) => {
   //add new project object to project array
   if (checkProjectAvailability(projects, name)) {
     projects.push({ name, tasks: [] });
+    localStorage.setItem("projects", JSON.stringify(projects));
   }
 };
 
@@ -15,6 +16,7 @@ const modifyProject = (projectID, newName) => {
   //get targeted project, modify name
   if (checkProjectAvailability(projects, newName)) {
     projects.filter((project) => project.name === projectID)[0].name = newName;
+    localStorage.setItem("projects", JSON.stringify(projects));
   }
 };
 
@@ -25,6 +27,7 @@ const deleteProject = (projectID) => {
       projects.map((project) => project.name).indexOf(projectID),
       1
     );
+    localStorage.setItem("projects", JSON.stringify(projects));
   }
 };
 
@@ -33,6 +36,7 @@ const createTask = (projectID, title, description, deadline, urgency) => {
   projects
     .filter((project) => project.name === projectID)[0]
     .tasks.push({ title, description, deadline, urgency });
+  localStorage.setItem("projects", JSON.stringify(projects));
 };
 
 const modifyTask = (
@@ -49,13 +53,13 @@ const modifyTask = (
   const taskIndex = projects[projectIndex].tasks
     .map((task) => task.title)
     .indexOf(taskID);
-  console.log(projectIndex + " " + taskIndex);
   projects[projectIndex].tasks[taskIndex] = {
     title,
     description,
     deadline,
     urgency,
   };
+  localStorage.setItem("projects", JSON.stringify(projects));
 };
 
 const deleteTask = (projectID, taskID) => {
@@ -67,6 +71,7 @@ const deleteTask = (projectID, taskID) => {
     .map((task) => task.title)
     .indexOf(taskID);
   targetedProject[0].tasks.splice(targetedTaskIndex, 1);
+  localStorage.setItem("projects", JSON.stringify(projects));
 };
 
 const checkProjectAvailability = (array, name) => {
@@ -268,18 +273,16 @@ confirmDialog6.addEventListener("click", (event) => {
   document.querySelector("#deleteProjectForm").parentElement.close();
 });
 
-/////////////////
-///  ENDING   ///
-/////////////////
-//initialization if user has never visited the website
-const init = () => {
-  createProject("General");
-};
-
-init();
-
-createTask("General", "title1", "description1", "2024-10-11", "high");
-createTask("General", "title2", "description1", "deadline1", "low");
-
-visualiseContentUI(projects[0]);
-visualiseSidebarUI(projects);
+//Initialize page (localstorage)
+window.addEventListener("DOMContentLoaded", () => {
+  projects = JSON.parse(localStorage.getItem("projects"));
+  if (projects == null || projects.length === 0) {
+    projects = [];
+    createProject("General");
+    visualiseContentUI(projects[0]);
+    visualiseSidebarUI(projects);
+  } else {
+    visualiseContentUI(projects[0]);
+    visualiseSidebarUI(projects);
+  }
+});
