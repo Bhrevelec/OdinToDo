@@ -187,7 +187,6 @@ confirmDialog3.addEventListener("click", (event) => {
       document.querySelector("#taskDeadline3").value,
       document.querySelector("#taskUrgency3").value
     );
-    console.log(document.querySelector("#taskDeadline3").value);
     visualiseSidebarUI(projects);
     visualiseContentUI(
       projects.filter(
@@ -279,12 +278,8 @@ const init = () => {
 
 init();
 
-createTask("General", "title1", "description1", "deadline1", "high");
+createTask("General", "title1", "description1", "2024-10-11", "high");
 createTask("General", "title2", "description1", "deadline1", "low");
 
 visualiseContentUI(projects[0]);
 visualiseSidebarUI(projects);
-/*
-import { format } from "date-fns";
-console.log(format(new Date(), "yyyy-MM-dd"));
-*/

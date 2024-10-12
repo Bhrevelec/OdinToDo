@@ -1,12 +1,12 @@
 const content = document.querySelector(".content");
 import modifyIcon from "./assets/pencil.svg";
-import checkIcon from "./assets/check-circle-outline.svg";
 import deleteIcon from "./assets/delete.svg";
 import calendarIcon from "./assets/calendar-month.svg";
 import projectIcon from "./assets/list-box-outline.svg";
 import taskIcon from "./assets/pound.svg";
 import calendarTodayIcon from "./assets/calendar-today.svg";
 import addIcon from "./assets/plus-circle.svg";
+import { format } from "date-fns";
 
 const visualiseContentUI = (project) => {
   //add project title
@@ -17,24 +17,26 @@ const visualiseContentUI = (project) => {
   const headerTitle = document.createElement("h1");
   headerTitle.textContent = project.name;
   divTitle.appendChild(headerTitle);
-  const buttonModify = document.createElement("button");
-  buttonModify.addEventListener("click", () => {
-    document.querySelector("#modifyProjectForm").parentNode.showModal();
-    document.querySelector("#modifyProjectInfo").textContent = project.name;
-  });
-  divTitle.appendChild(buttonModify);
-  const imgModify = document.createElement("img");
-  imgModify.src = modifyIcon;
-  buttonModify.appendChild(imgModify);
-  const buttonDelete = document.createElement("button");
-  buttonDelete.addEventListener("click", () => {
-    document.querySelector("#deleteProjectForm").parentNode.showModal();
-    document.querySelector("#deleteProjectInfo").textContent = project.name;
-  });
-  divTitle.appendChild(buttonDelete);
-  const imgDelete = document.createElement("img");
-  imgDelete.src = deleteIcon;
-  buttonDelete.appendChild(imgDelete);
+  if (project.name !== "Today") {
+    const buttonModify = document.createElement("button");
+    buttonModify.addEventListener("click", () => {
+      document.querySelector("#modifyProjectForm").parentNode.showModal();
+      document.querySelector("#modifyProjectInfo").textContent = project.name;
+    });
+    divTitle.appendChild(buttonModify);
+    const imgModify = document.createElement("img");
+    imgModify.src = modifyIcon;
+    buttonModify.appendChild(imgModify);
+    const buttonDelete = document.createElement("button");
+    buttonDelete.addEventListener("click", () => {
+      document.querySelector("#deleteProjectForm").parentNode.showModal();
+      document.querySelector("#deleteProjectInfo").textContent = project.name;
+    });
+    divTitle.appendChild(buttonDelete);
+    const imgDelete = document.createElement("img");
+    imgDelete.src = deleteIcon;
+    buttonDelete.appendChild(imgDelete);
+  }
   //add project tasks
   const listContainer = document.createElement("div");
   listContainer.classList.add("list-container");
@@ -52,54 +54,57 @@ const visualiseContentUI = (project) => {
     let listItemTopRight = document.createElement("div");
     listItemTopRight.classList.add("list-item-top-right");
     listItem.appendChild(listItemTopRight);
-    let listItemButtonModify = document.createElement("button");
-    listItemButtonModify.classList.add("list-item-button");
-    listItemButtonModify.addEventListener("click", () => {
-      document.querySelector("#modifyTaskProjectInfo").textContent =
-        project.name;
-      document.querySelector("#taskTitle3").value = project.tasks[i].title;
-      document.querySelector("#taskTitle3").defaultValue =
-        project.tasks[i].title;
-      document.querySelector("#taskDescription3").value =
-        project.tasks[i].description;
-      document.querySelector("#taskDeadline3").value =
-        project.tasks[i].deadline;
-      switch (project.tasks[i].urgency) {
-        case "high":
-          document.querySelector("#taskUrgency3").options[0].selected = true;
-          break;
-        case "medium":
-          document.querySelector("#taskUrgency3").options[1].selected = true;
-          break;
-        case "low":
-          document.querySelector("#taskUrgency3").options[2].selected = true;
-          break;
-      }
-      document.querySelector("#modifyTaskForm").parentElement.showModal();
-    });
-    listItemTopRight.appendChild(listItemButtonModify);
-    let modifyImgButtonModify = document.createElement("img");
-    modifyImgButtonModify.src = modifyIcon;
-    listItemButtonModify.appendChild(modifyImgButtonModify);
-    let listItemButtonDelete = document.createElement("button");
-    listItemButtonDelete.classList.add("list-item-button");
-    listItemButtonDelete.addEventListener("click", () => {
-      document.querySelector("#deleteTaskProjectInfo").textContent =
-        project.name;
-      document.querySelector("#deleteTaskTaskInfo").textContent =
-        project.tasks[i].title;
-      document.querySelector("#deleteTaskDescriptionInfo").textContent =
-        project.tasks[i].description;
-      document.querySelector("#deleteTaskDeadlineInfo").textContent =
-        project.tasks[i].deadline;
-      document.querySelector("#deleteTaskUrgencyInfo").textContent =
-        project.tasks[i].urgency;
-      document.querySelector("#deleteTaskForm").parentElement.showModal();
-    });
-    listItemTopRight.appendChild(listItemButtonDelete);
-    let deleteImgButtonDelete = document.createElement("img");
-    deleteImgButtonDelete.src = deleteIcon;
-    listItemButtonDelete.appendChild(deleteImgButtonDelete);
+    if (project.name !== "Today") {
+      let listItemButtonModify = document.createElement("button");
+      listItemButtonModify.classList.add("list-item-button");
+      listItemButtonModify.addEventListener("click", () => {
+        document.querySelector("#modifyTaskProjectInfo").textContent =
+          project.name;
+        document.querySelector("#taskTitle3").value = project.tasks[i].title;
+        document.querySelector("#taskTitle3").defaultValue =
+          project.tasks[i].title;
+        document.querySelector("#taskDescription3").value =
+          project.tasks[i].description;
+        document.querySelector("#taskDeadline3").value =
+          project.tasks[i].deadline;
+        switch (project.tasks[i].urgency) {
+          case "high":
+            document.querySelector("#taskUrgency3").options[0].selected = true;
+            break;
+          case "medium":
+            document.querySelector("#taskUrgency3").options[1].selected = true;
+            break;
+          case "low":
+            document.querySelector("#taskUrgency3").options[2].selected = true;
+            break;
+        }
+        document.querySelector("#modifyTaskForm").parentElement.showModal();
+      });
+      listItemTopRight.appendChild(listItemButtonModify);
+      let modifyImgButtonModify = document.createElement("img");
+      modifyImgButtonModify.src = modifyIcon;
+      listItemButtonModify.appendChild(modifyImgButtonModify);
+      let listItemButtonDelete = document.createElement("button");
+      listItemButtonDelete.classList.add("list-item-button");
+      listItemButtonDelete.addEventListener("click", () => {
+        document.querySelector("#deleteTaskProjectInfo").textContent =
+          project.name;
+        document.querySelector("#deleteTaskTaskInfo").textContent =
+          project.tasks[i].title;
+        document.querySelector("#deleteTaskDescriptionInfo").textContent =
+          project.tasks[i].description;
+        document.querySelector("#deleteTaskDeadlineInfo").textContent =
+          project.tasks[i].deadline;
+        document.querySelector("#deleteTaskUrgencyInfo").textContent =
+          project.tasks[i].urgency;
+        document.querySelector("#deleteTaskForm").parentElement.showModal();
+      });
+      listItemTopRight.appendChild(listItemButtonDelete);
+      let deleteImgButtonDelete = document.createElement("img");
+      deleteImgButtonDelete.src = deleteIcon;
+      listItemButtonDelete.appendChild(deleteImgButtonDelete);
+    }
+
     let listItemMiddleLeft = document.createElement("div");
     listItemMiddleLeft.classList.add("list-item-middle-left");
     listItem.appendChild(listItemMiddleLeft);
@@ -152,6 +157,9 @@ const visualiseSidebarUI = (projects) => {
   sidebarTopItem1.classList.add("sidebar-top-item");
   sidebarTop.appendChild(sidebarTopItem1);
   const button1 = document.createElement("button");
+  button1.addEventListener("click", () => {
+    visualiseTodayUI(projects);
+  });
   sidebarTopItem1.appendChild(button1);
   const span1 = document.createElement("span");
   button1.appendChild(span1);
@@ -240,6 +248,19 @@ const visualiseSidebarUI = (projects) => {
       taskSpan.appendChild(taskText);
     }
   }
+};
+
+const visualiseTodayUI = (projects) => {
+  let tasksToday = { name: "Today", tasks: [] };
+  let dateToday = format(new Date(), "yyyy-MM-dd");
+  for (let i = 0; i < projects.length; i++) {
+    for (let j = 0; j < projects[i].tasks.length; j++) {
+      if (projects[i].tasks[j].deadline === dateToday) {
+        tasksToday.tasks.push(projects[i].tasks[j]);
+      }
+    }
+  }
+  visualiseContentUI(tasksToday);
 };
 
 export { visualiseContentUI, visualiseSidebarUI };
